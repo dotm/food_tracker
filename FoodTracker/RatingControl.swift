@@ -55,11 +55,9 @@ extension RatingControl {
         func createButton(_ index: Int){
             //create the button
             let button = UIButton()
-            button.setImage(emptyStar, for: .normal)
-            button.setImage(filledStar, for: .selected)
-            button.setImage(highlightedStar, for: .highlighted)
-            button.setImage(highlightedStar, for: [.highlighted, .selected])
-            
+            setStarImages_forButtonStates(
+                button, normalImage: emptyStar, highlightedImage: highlightedStar, selectedImage: filledStar
+            )
             addConstraints_toButton(button)
             addActions_toButton(button)
             addAccessibilityLabel_toButton(button, index: index)
@@ -71,6 +69,12 @@ extension RatingControl {
         updateButtonSelectionStates()
     }
     
+    private func setStarImages_forButtonStates(_ button: UIButton, normalImage: UIImage?, highlightedImage: UIImage?, selectedImage: UIImage?){
+        button.setImage(normalImage, for: .normal)
+        button.setImage(selectedImage, for: .selected)
+        button.setImage(highlightedImage, for: .highlighted)
+        button.setImage(highlightedImage, for: [.highlighted, .selected])
+    }
     private func addButton(_ button: UIButton){
         //add the button to the stack
         addArrangedSubview(button)
@@ -128,13 +132,7 @@ extension RatingControl {
         
         // Calculate the rating of the selected button
         let selectedRating = index + 1
-        
-        if selectedRating == rating {
-            // If the selected star represents the current rating, reset the rating to 0.
-            rating = 0
-        } else {
-            // Otherwise set the rating to the selected star
-            rating = selectedRating
-        }
+        let previousRating = rating
+        rating = (selectedRating == previousRating) ? 0 : selectedRating
     }
 }
