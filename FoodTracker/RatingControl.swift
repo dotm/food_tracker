@@ -44,27 +44,36 @@ import UIKit
 extension RatingControl {
     private func setupButtons(){
         clearAllButtons()
+        
+        //load button images
+        let bundle = Bundle(for: type(of: self))
+        let filledStar = UIImage(named: "filledStar", in: bundle, compatibleWith: self.traitCollection)
+        let emptyStar = UIImage(named: "emptyStar", in: bundle, compatibleWith: self.traitCollection)
+        let highlightedStar = UIImage(named: "highlightedStar", in: bundle, compatibleWith: self.traitCollection)
+        
+        func createButton(){
+            //create the button
+            let button = UIButton()
+            button.setImage(emptyStar, for: .normal)
+            button.setImage(filledStar, for: .selected)
+            button.setImage(highlightedStar, for: .highlighted)
+            button.setImage(highlightedStar, for: [.highlighted, .selected])
+            
+            //add constraints
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.heightAnchor.constraint(equalToConstant: starSize.height).isActive = true
+            button.widthAnchor.constraint(equalToConstant: starSize.width).isActive = true
+            
+            //setup button action
+            button.addTarget(
+                self,
+                action: #selector(RatingControl.ratingButtonTapped(button:)),
+                for: .touchUpInside
+            )
+            
+            addButton(button)
+        }
         for _ in 0 ..< starCount { createButton() }
-    }
-    
-    private func createButton(){
-        //create the button
-        let button = UIButton()
-        button.backgroundColor = UIColor.red
-        
-        //add constraints
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.heightAnchor.constraint(equalToConstant: starSize.height).isActive = true
-        button.widthAnchor.constraint(equalToConstant: starSize.width).isActive = true
-        
-        //setup button action
-        button.addTarget(
-            self,
-            action: #selector(RatingControl.ratingButtonTapped(button:)),
-            for: .touchUpInside
-        )
-        
-        addButton(button)
     }
     
     private func addButton(_ button: UIButton){
