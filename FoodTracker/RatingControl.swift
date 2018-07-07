@@ -66,9 +66,7 @@ extension RatingControl {
             
             addButton(button)
         }
-        for i in 0 ..< starCount {
-            createButton(i)
-        }
+        for i in 0 ..< starCount { createButton(i) }
         
         updateButtonSelectionStates()
     }
