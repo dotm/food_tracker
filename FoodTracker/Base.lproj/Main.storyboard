@@ -40,7 +40,6 @@
                                         <state key="normal" title="Set Default Label Text"/>
                                         <connections>
                                             <action selector="setDefaultLabelText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cSg-DZ-OpU"/>
-                                            <outletCollection property="gestureRecognizers" destination="NqM-r7-s1y" appends="YES" id="hgT-JY-lqB"/>
                                         </connections>
                                     </button>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="DXQ-BX-Msw">
