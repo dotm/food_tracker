@@ -76,8 +76,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Vcl-rq-7BL">
-                                <rect key="frame" x="10" y="108" width="355" height="410"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Vcl-rq-7BL">
+                                <rect key="frame" x="10" y="108" width="355" height="416"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Meal Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oqs-oz-sYt">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
@@ -95,8 +95,8 @@
                                             <outletCollection property="gestureRecognizers" destination="NqM-r7-s1y" appends="YES" id="zyo-3K-NwA"/>
                                         </connections>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sc7-in-iy0" customClass="RatingControl" customModule="FoodTracker" customModuleProvider="target">
-                                        <rect key="frame" x="51.666666666666657" y="366" width="251.99999999999997" height="44"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sc7-in-iy0" customClass="RatingControl" customModule="FoodTracker" customModuleProvider="target">
+                                        <rect key="frame" x="51.666666666666657" y="366" width="251.99999999999997" height="50"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="starCount">
                                                 <integer key="value" value="5"/>
@@ -122,11 +122,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="New Meal" id="xBg-iW-LsD">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xye-fO-v5B"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="N8y-5z-a1y">
-                            <connections>
-                                <segue destination="276-Uo-23L" kind="unwind" unwindAction="unwindToMealListWithSender:" id="mUE-ip-KEa"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="N8y-5z-a1y"/>
                     </navigationItem>
                     <connections>
                         <outlet property="nameTextField" destination="Oqs-oz-sYt" id="v3q-NQ-CeU"/>
@@ -136,7 +132,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="276-Uo-23L" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="NqM-r7-s1y">
                     <connections>
                         <action selector="selectImageFromPhotoLibrary:" destination="BYZ-38-t0r" id="zJR-BY-whY"/>

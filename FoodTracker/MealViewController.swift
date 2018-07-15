@@ -14,6 +14,7 @@ class MealViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         nameTextField.delegate = self
+        updateSaveButtonState()
     }
 
     //MARK: Properties
@@ -96,6 +97,16 @@ extension MealViewController: UITextFieldDelegate {
         return true
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        saveButton.isEnabled = false
+    }
+    private func updateSaveButtonState(){
+        let textField_isNot_empty = (nameTextField.text != nil) && (nameTextField.text != "")
+        saveButton.isEnabled = textField_isNot_empty
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
+        updateSaveButtonState()
+        navigationItem.title = textField.text
     }
 }
