@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import os.log
 
 class MealViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -20,6 +20,33 @@ class MealViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
+    /*
+     This value is either
+     passed by `MealTableViewController` in `prepare(for:sender:)` when editing meal
+     or constructed here as part of adding a new meal.
+     */
+    var meal: Meal?
+    
+    //MARK: Navigation
+    
+    // This method lets you configure a view controller before it's presented.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        guard let button = sender as? UIBarButtonItem, button === saveButton else {
+            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            return
+        }
+        
+        let name = nameTextField.text ?? ""
+        let photo = photoImageView.image
+        let rating = ratingControl.rating
+        
+        meal = Meal(name: name, photo: photo, rating: rating)
+    }
+
     
     //MARK: Actions
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
