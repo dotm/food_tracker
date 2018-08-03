@@ -15,6 +15,17 @@ class MealViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         nameTextField.delegate = self
         updateSaveButtonState()
+        
+        let inEditMode = meal != nil
+        if inEditMode {
+            populateEditForm(withData: meal!)
+        }
+    }
+    private func populateEditForm(withData meal: Meal){
+        navigationItem.title = meal.name
+        nameTextField.text = meal.name
+        photoImageView.image = meal.photo
+        ratingControl.rating = meal.rating
     }
 
     //MARK: Properties
