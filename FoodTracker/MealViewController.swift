@@ -14,12 +14,13 @@ class MealViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         nameTextField.delegate = self
-        updateSaveButtonState()
         
         let inEditMode = meal != nil
         if inEditMode {
             populateEditForm(withData: meal!)
         }
+        
+        updateSaveButtonState()
     }
     private func populateEditForm(withData meal: Meal){
         navigationItem.title = meal.name

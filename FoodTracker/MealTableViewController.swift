@@ -14,14 +14,27 @@ class MealTableViewController: UITableViewController {
     var meals: [Meal] = []
     
     //MARK: Actions
+    fileprivate func addMeal(_ meal: Meal) {
+        let newIndexPath = IndexPath(row: meals.count, section: 0)
+        meals.append(meal)
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
+    }
+    
+    fileprivate func editMeal(at selectedIndexPath: IndexPath, with meal: Meal) {
+        meals[selectedIndexPath.row] = meal
+        tableView.reloadRows(at: [selectedIndexPath], with: .none)
+    }
+    
     @IBAction func unwindToMealList(sender: UIStoryboardSegue){
         if
             let sourceViewController = sender.source as? MealViewController,
             let meal = sourceViewController.meal
         {
-            let newIndexPath = IndexPath(row: meals.count, section: 0)
-            meals.append(meal)
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                editMeal(at: selectedIndexPath, with: meal)
+            }else{
+                addMeal(meal)
+            }
         }
     }
     
