@@ -52,11 +52,7 @@ class Meal: NSObject, NSCoding {
         }
         
         let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
-        
-        guard let rating = aDecoder.decodeObject(forKey: PropertyKey.rating) as? Int else {
-            os_log("Unable to decode the rating for a Meal object.", log: OSLog.default, type: .debug)
-            return nil
-        }
+        let rating = aDecoder.decodeInteger(forKey: PropertyKey.rating)
         
         self.init(name: name, photo: photo, rating: rating)
     }
